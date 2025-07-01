@@ -68,7 +68,7 @@ const Header = () => {
                 onClick={() => scrollToSection('benefits')}
                 className="text-gray-600 hover:text-purple-600 transition-colors text-left"
               >
-                Why It Works
+                Why It Work's
               </button>
               <button
                 onClick={() => scrollToSection('pricing')}
