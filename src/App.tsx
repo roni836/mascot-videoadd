@@ -10,10 +10,12 @@ import ClientLogos from './components/ClientLogos';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ExitIntentPopup from './components/ExitIntentPopup';
 
 function App() {
   return (
     <div className="min-h-screen">
+      <ExitIntentPopup />
       <Header />
       <Hero />
       <Benefits />

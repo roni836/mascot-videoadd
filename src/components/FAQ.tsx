@@ -6,20 +6,20 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: 'Do I own the full rights to the mascot character?',
-      answer: 'Yes! Once the project is complete, you receive full commercial usage rights for the final video and the mascot character design itself. It\'s 100% yours.'
+      question: 'Budem mať plné práva na maskota?',
+      answer: 'Áno! Po dokončení projektu získate plné komerčné práva na finálne video aj samotný dizajn maskota. Je 100 % váš.'
     },
     {
-      question: 'What if I already have a mascot? Can you just animate it?',
-      answer: 'Absolutely! We love bringing existing characters to life. Our Starter Package is perfect for this. Simply provide your character files, and we\'ll handle the animation.'
+      question: 'Už mám maskota. Viete ho len animovať?',
+      answer: 'Samozrejme! Radi vdýchneme život aj existujúcim postavičkám. Stačí nám poslať podklady a o animáciu sa postaráme.'
     },
     {
-      question: 'What if I\'m not happy with the first concept?',
-      answer: 'Your satisfaction is our priority. Our process includes up to 3 revision rounds for the animation, and we work closely with you on the initial concept to ensure we capture your vision perfectly before animation begins.'
+      question: 'Čo ak sa mi prvý návrh nebude páčiť?',
+      answer: 'Vaša spokojnosť je pre nás prioritou. V cene máte až 3 kolá revízií a na začiatku spolu detailne doladíme koncept, aby sme vystihli vašu predstavu.'
     },
     {
-      question: 'What file formats will I receive?',
-      answer: 'You will receive a high-definition (1080p) MP4 video file, which is perfect for social media, websites, and presentations. Other formats are available upon request.'
+      question: 'V akom formáte dostanem video?',
+      answer: 'Dostanete video vo vysokom rozlíšení (1080p) vo formáte MP4, vhodné pre sociálne siete, web aj prezentácie. Na požiadanie vieme dodať aj iné formáty.'
     }
   ];
 
@@ -32,10 +32,10 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Frequently Asked Questions
+            Často kladené otázky
           </h2>
-          <p className="text-xl text-gray-600">
-            Everything you need to know about our mascot video service
+          <p className="text-xl text-gray-600 mb-8">
+            Všetko, čo potrebujete vedieť o našich video maskotoch.
           </p>
         </div>
 

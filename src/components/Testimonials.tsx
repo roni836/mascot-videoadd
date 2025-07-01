@@ -6,21 +6,21 @@ const Testimonials = () => {
     {
       name: 'Anna Schmidt',
       business: 'Sweet Dreams Café',
-      text: 'Our mascot ad got 5x more reach than anything we posted before! Customers love our little baker character and always mention him when they visit.',
+      text: 'Naša reklama s maskotom mala 5x väčší dosah ako čokoľvek predtým! Zákazníci milujú našu malú pekársku postavičku a často ju spomínajú pri návšteve.',
       rating: 5,
       avatar: '👩‍🍳'
     },
     {
       name: 'Tom Müller',
       business: 'Pro Tools Rental',
-      text: "It's like having a brand ambassador in a video! The mascot explains our services perfectly and makes us feel more approachable than our competitors.",
+      text: "Je to ako mať ambasádora značky vo videu! Maskot skvele vysvetľuje naše služby a robí nás prístupnejšími ako konkurencia.",
       rating: 5,
       avatar: '👨‍🔧'
     },
     {
       name: 'Lisa Chen',
       business: 'FitLife Studio',
-      text: 'The animated character perfectly captures our gym\'s energy. New members often say they joined because of our fun mascot video on Instagram!',
+      text: 'Animovaná postavička dokonale vystihuje energiu nášho fitka. Noví členovia často hovoria, že sa pridali práve kvôli nášmu zábavnému maskotovému videu na Instagrame!',
       rating: 5,
       avatar: '👩‍💼'
     }
@@ -31,10 +31,10 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            What Our Clients Say
+            Čo hovoria naši klienti
           </h2>
           <p className="text-xl text-gray-600">
-            Real results from real businesses
+            Reálne výsledky od reálnych firiem.
           </p>
         </div>
 
@@ -93,6 +93,13 @@ const Testimonials = () => {
               <div className="text-2xl font-bold text-orange-600">30</div>
               <div className="text-sm text-gray-600">Day Delivery</div>
             </div>
+          </div>
+        </div>
+
+        <div className="text-center mt-8">
+          <div className="inline-flex items-center gap-2 text-sm text-gray-500">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>Dôverujú nám firmy ako vy</span>
           </div>
         </div>
       </div>

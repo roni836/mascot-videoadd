@@ -10,10 +10,10 @@ const Pricing = () => {
   };
 
   const addOns = [
-    { name: 'Custom Mascot Design', price: '€89', icon: Star },
-    { name: 'Custom Scriptwriting', price: '€50', icon: Users },
-    { name: 'Social Media Cutdowns', price: '€29', icon: Zap },
-    { name: 'Rush Delivery', price: '€99', icon: Clock },
+    { name: 'Vlastný dizajn maskota', price: '89 €', icon: Star },
+    { name: 'Tvorba scenára', price: '50 €', icon: Users },
+    { name: 'Skrátené verzie pre siete', price: '29 €', icon: Zap },
+    { name: 'Expresné dodanie', price: '99 €', icon: Clock },
   ];
 
   return (
@@ -21,10 +21,10 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Simple Pricing, Big Results
+            Jednoduchý cenník, veľké výsledky
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our base package starts at €500 for a 30-second ad. Want more? Just add what you need.
+            Náš základný balík začína na 500 € za 30-sekundovú reklamu. Potrebujete viac? Jednoducho si pridajte, čo potrebujete.
           </p>
         </div>
 
@@ -34,12 +34,12 @@ const Pricing = () => {
             <div className="bg-gradient-to-r from-purple-600 to-teal-600 px-8 py-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Starter Package</h3>
-                  <p className="text-purple-100">Perfect for most businesses</p>
+                  <h3 className="text-2xl font-bold text-white">Štartovací balík</h3>
+                  <p className="text-purple-100">Perfektný pre väčšinu firiem</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-4xl font-bold text-white">€500</div>
-                  <p className="text-purple-100 text-sm">excl. VAT</p>
+                  <div className="text-4xl font-bold text-white">500&nbsp;€</div>
+                  <p className="text-purple-100 text-sm">bez DPH</p>
                 </div>
               </div>
             </div>
@@ -47,15 +47,15 @@ const Pricing = () => {
             <div className="p-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-4">What's Included:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-4">Čo je v cene:</h4>
                   <ul className="space-y-3">
                     {[
-                      'Custom animated 30-second mascot ad',
-                      'Basic voiceover & sound effects',
-                      'HD video delivery (1080p)',
-                      'Commercial usage rights',
-                      'Up to 3 revision rounds',
-                      '30-day delivery guarantee'
+                      'Animovaná 30-sekundová reklama s maskotom na mieru',
+                      'Základný voiceover a zvukové efekty',
+                      'Dodanie videa v HD kvalite (1080p)',
+                      'Kompletné komerčné práva',
+                      'Až 3 kolá revízií',
+                      'Dodanie do 21 dní'
                     ].map((feature, index) => (
                       <li key={index} className="flex items-center gap-3">
                         <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
@@ -66,13 +66,13 @@ const Pricing = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-4">Perfect For:</h4>
+                  <h4 className="font-semibold text-gray-900 mb-4">Ideálne pre:</h4>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Social media advertising</li>
-                    <li>• Website hero sections</li>
-                    <li>• Email marketing campaigns</li>
-                    <li>• Trade show presentations</li>
-                    <li>• Brand awareness campaigns</li>
+                    <li>• Reklama na sociálnych sieťach</li>
+                    <li>• Úvodné sekcie webstránok</li>
+                    <li>• E-mailové kampane</li>
+                    <li>• Prezentácie na veľtrhoch</li>
+                    <li>• Budovanie povedomia o značke</li>
                   </ul>
                 </div>
               </div>
@@ -82,10 +82,10 @@ const Pricing = () => {
                   onClick={scrollToContact}
                   className="flex-1 bg-gradient-to-r from-purple-600 to-teal-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200"
                 >
-                  Get Started Now
+                  Začať teraz
                 </button>
                 <button className="flex-1 border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-purple-600 hover:text-white transition-all duration-200">
-                  View Examples
+                  Pozrieť ukážky
                 </button>
               </div>
             </div>
@@ -94,7 +94,7 @@ const Pricing = () => {
           {/* Add-ons */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Popular Add-ons
+              Obľúbené doplnky
             </h3>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">

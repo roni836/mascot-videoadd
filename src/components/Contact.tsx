@@ -64,25 +64,25 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-purple-900 to-teal-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Let's Make Your Brand Unforgettable
+            Urobme vašu značku nezabudnuteľnou
           </h2>
           <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-            Tell us a bit about your business and we'll send you a free custom concept idea
+            Povedzte nám niečo o svojom biznise a my vám pošleme bezplatný koncept na mieru.
           </p>
         </div>
 
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-          <div className="grid lg:grid-cols-2">
+          <div className="grid md:grid-cols-12 gap-8">
             {/* Form */}
-            <div className="p-8 lg:p-12">
+            <div className="md:col-span-7 p-8 lg:p-12">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Your Name *
+                      Vaše meno *
                     </label>
                     <input
                       type="text"
@@ -97,7 +97,7 @@ const Contact = () => {
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Business Name *
+                      Názov firmy *
                     </label>
                     <input
                       type="text"
@@ -113,7 +113,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Website / Social Media
+                    Webstránka / Sociálne siete
                   </label>
                   <input
                     type="url"
@@ -127,7 +127,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    What do you sell? *
+                    Čo predávate? *
                   </label>
                   <textarea
                     name="product"
@@ -142,7 +142,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Describe your brand tone (Optional)
+                    Opíšte tón vašej značky (Voliteľné)
                   </label>
                   <textarea
                     name="brandTone"
@@ -156,7 +156,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address *
+                    E-mailová adresa *
                   </label>
                   <input
                     type="email"
@@ -174,24 +174,24 @@ const Contact = () => {
                   className="w-full bg-gradient-to-r from-purple-600 to-teal-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <Send className="w-5 h-5" />
-                  Submit & Get Free Concept Idea
+                  Odoslať a získať koncept zadarmo
                 </button>
               </form>
 
               <div className="mt-8 pt-8 border-t border-gray-200">
                 <div className="flex items-center justify-center gap-2 text-gray-600">
                   <Calendar className="w-5 h-5" />
-                  <span>Or book a free call →</span>
+                  <span>Alebo si rezervujte hovor →</span>
                   <button className="text-purple-600 hover:text-purple-700 font-medium">
-                    Schedule Now
+                    Dohodnúť termín
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Info Panel */}
-            <div className="bg-gradient-to-br from-purple-600 to-teal-600 p-8 lg:p-12 text-white">
-              <h3 className="text-2xl font-bold mb-6">What Happens Next?</h3>
+            <div className="md:col-span-5 bg-gradient-to-br from-purple-600 to-teal-600 p-8 lg:p-12 text-white">
+              <h3 className="text-2xl font-bold mb-6">Čo bude nasledovať?</h3>
               
               <div className="space-y-6">
                 <div className="flex gap-4">
@@ -199,8 +199,8 @@ const Contact = () => {
                     1
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Concept Creation</h4>
-                    <p className="text-purple-100">We'll create a custom mascot concept based on your brand</p>
+                    <h4 className="font-semibold mb-1">Tvorba konceptu</h4>
+                    <p className="text-purple-100">Vytvoríme koncept maskota na základe vašej značky</p>
                   </div>
                 </div>
                 
@@ -209,8 +209,8 @@ const Contact = () => {
                     2
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Free Consultation</h4>
-                    <p className="text-purple-100">30-minute call to discuss your vision and requirements</p>
+                    <h4 className="font-semibold mb-1">Bezplatná konzultácia</h4>
+                    <p className="text-purple-100">30-minútový hovor na prebratie vašej vízie a požiadaviek</p>
                   </div>
                 </div>
                 
@@ -219,15 +219,15 @@ const Contact = () => {
                     3
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-1">Custom Quote</h4>
-                    <p className="text-purple-100">Detailed pricing based on your specific needs</p>
+                    <h4 className="font-semibold mb-1">Cenová ponuka na mieru</h4>
+                    <p className="text-purple-100">Cenová ponuka prispôsobená vašim potrebám</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8 p-4 bg-white/10 rounded-xl">
                 <p className="text-sm text-purple-100">
-                  💡 <strong>Free Bonus:</strong> We'll also include 3 social media post ideas featuring your mascot!
+                  💡 <strong>Bonus zadarmo:</strong> Pridáme vám aj 3 nápady na príspevky na sociálne siete s vaším novým maskotom!
                 </p>
               </div>
             </div>

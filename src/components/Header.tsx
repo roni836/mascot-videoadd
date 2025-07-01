@@ -29,25 +29,25 @@ const Header = () => {
               onClick={() => scrollToSection('benefits')}
               className="text-gray-600 hover:text-purple-600 transition-colors"
             >
-              Why It Works
+              Ako to funguje
             </button>
             <button
               onClick={() => scrollToSection('pricing')}
               className="text-gray-600 hover:text-purple-600 transition-colors"
             >
-              Pricing
+              Cenník
             </button>
             <button
               onClick={() => scrollToSection('examples')}
               className="text-gray-600 hover:text-purple-600 transition-colors"
             >
-              Examples
+              Ukážky
             </button>
             <button
               onClick={() => scrollToSection('contact')}
               className="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors font-medium"
             >
-              Get Quote
+              Chcem ponuku
             </button>
           </nav>
 
@@ -68,25 +68,25 @@ const Header = () => {
                 onClick={() => scrollToSection('benefits')}
                 className="text-gray-600 hover:text-purple-600 transition-colors text-left"
               >
-                Why It Work's
+                Ako to funguje
               </button>
               <button
                 onClick={() => scrollToSection('pricing')}
                 className="text-gray-600 hover:text-purple-600 transition-colors text-left"
               >
-                Pricing
+                Cenník
               </button>
               <button
                 onClick={() => scrollToSection('examples')}
                 className="text-gray-600 hover:text-purple-600 transition-colors text-left"
               >
-                Examples
+                Ukážky
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors font-medium w-fit"
               >
-                Get Quote
+                Chcem ponuku
               </button>
             </nav>
           </div>

@@ -6,22 +6,22 @@ const Benefits = () => {
     {
       icon: Lightbulb,
       emoji: '💡',
-      title: 'Memorable Branding',
-      description: 'Stand out with a unique, friendly character that customers will remember and connect with your brand.',
+      title: 'Nezabudnuteľný branding',
+      description: 'Odlíšte sa s unikátnou a priateľskou postavičkou, ktorú si vaši zákazníci okamžite zapamätajú a vytvoria si k nej vzťah.',
       gradient: 'from-purple-500 to-purple-600'
     },
     {
       icon: TrendingUp,
       emoji: '📈',
-      title: 'More Engagement',
-      description: 'Mascot ads are fun, watchable, and shareable - driving 3x more engagement than static content.',
+      title: 'Vyššia miera interakcie',
+      description: 'Animované reklamy sú zábavné a ľahko sa šíria. Získajte až 3x viac interakcií v porovnaní so statickým obsahom.',
       gradient: 'from-teal-500 to-teal-600'
     },
     {
       icon: Target,
       emoji: '🎯',
-      title: 'Targeted for SMBs',
-      description: 'Affordable and fully custom for your niche - no generic templates, just your brand personality.',
+      title: 'Ideálne pre malé a stredné firmy',
+      description: 'Cenovo dostupné a plne prispôsobené pre váš segment. Žiadne generické šablóny, len osobnosť vašej značky.',
       gradient: 'from-orange-500 to-orange-600'
     }
   ];
@@ -31,10 +31,10 @@ const Benefits = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Why Mascot Ads Drive More Sales
+            Prečo maskoti predávajú viac
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Turn your business into a memorable brand that customers love and trust
+            Premeňte svoj biznis na značku, ktorú si zákazníci zamilujú a ktorej dôverujú.
           </p>
         </div>
 

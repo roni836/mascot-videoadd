@@ -6,49 +6,49 @@ const Examples = () => {
     {
       icon: ShoppingBag,
       emoji: '🧁',
-      title: 'Pastry Shops',
-      description: 'Sweet mascots for bakeries and cafés',
-      color: 'from-pink-400 to-rose-500',
+      title: 'Cukrárne a kaviarne',
+      description: 'Ideálne pre sladké obchody, pekárne a útulné kaviarne.',
+      color: 'from-pink-400 to-yellow-300',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
     },
     {
       icon: Dumbbell,
-      emoji: '💪',
-      title: 'Gyms & Studios',
-      description: 'Energetic characters for fitness brands',
-      color: 'from-orange-400 to-red-500',
+      emoji: '🏋️‍♂️',
+      title: 'Fitness a štúdiá',
+      description: 'Skvelé pre fitnescentrá, jogové štúdiá a športové značky.',
+      color: 'from-teal-400 to-blue-300',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
     },
     {
       icon: Home,
       emoji: '🏠',
-      title: 'Real Estate',
-      description: 'Trustworthy guides for property services',
-      color: 'from-blue-400 to-indigo-500',
+      title: 'Realitné kancelárie',
+      description: 'Vyniknite na trhu s nehnuteľnosťami s priateľským maskotom.',
+      color: 'from-orange-400 to-yellow-200',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'
     },
     {
       icon: Wrench,
-      emoji: '🛠️',
-      title: 'Machinery Rentals',
-      description: 'Professional mascots for B2B services',
-      color: 'from-gray-400 to-gray-600',
+      emoji: '🔧',
+      title: 'Požičovne strojov',
+      description: 'Zviditeľnite svoju požičovňu a urobte ju prístupnejšou.',
+      color: 'from-gray-400 to-yellow-200',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
     },
     {
       icon: Baby,
-      emoji: '👶',
-      title: 'Kids Products',
-      description: 'Playful characters for family brands',
-      color: 'from-purple-400 to-pink-500',
+      emoji: '🧸',
+      title: 'Produkty pre deti',
+      description: 'Potešte deti aj rodičov hravým maskotom.',
+      color: 'from-yellow-400 to-pink-200',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
     },
     {
       icon: Store,
-      emoji: '🛍️',
+      emoji: '��',
       title: 'E-commerce',
-      description: 'Engaging mascots for online stores',
-      color: 'from-teal-400 to-cyan-500',
+      description: 'Zvýšte osobnosť a dôveryhodnosť vášho e-shopu.',
+      color: 'from-purple-400 to-teal-200',
       videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4'
     }
   ];
@@ -58,10 +58,10 @@ const Examples = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Mascots That Match Your Business
+            Maskoti, ktorí sedia vášmu biznisu
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From bakeries to fitness studios, our mascots are made to fit your brand vibe perfectly
+            Od pekární po fitness štúdiá, naši maskoti sa dokonale prispôsobia atmosfére vašej značky.
           </p>
         </div>
 

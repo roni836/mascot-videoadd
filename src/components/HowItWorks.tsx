@@ -6,22 +6,22 @@ const HowItWorks = () => {
     {
       icon: Lightbulb,
       number: '1',
-      title: 'Concept & Discovery',
-      description: 'You tell us about your brand and vision. We create a custom mascot concept and script idea based on your goals.',
+      title: 'Konzultácia a návrh',
+      description: 'Poviete nám o svojej značke a vízii. My na základe toho vytvoríme koncept maskota a nápad na scenár.',
       gradient: 'from-purple-500 to-purple-600'
     },
     {
       icon: Wand2,
       number: '2',
-      title: 'Design & Animation',
-      description: 'Our artists bring your mascot to life with professional animation, voiceover, and sound effects.',
+      title: 'Dizajn a animácia',
+      description: 'Naši umelci vdýchnu vášmu maskotovi život pomocou profesionálnej animácie, hlasu a zvukových efektov.',
       gradient: 'from-teal-500 to-teal-600'
     },
     {
       icon: Rocket,
       number: '3',
-      title: 'Review & Deliver',
-      description: 'You review the ad, request revisions, and receive your final HD video, ready to drive results.',
+      title: 'Schválenie a dodanie',
+      description: 'Video si pozriete, požiadate o prípadné úpravy a my vám dodáme finálne HD súbory pripravené na použitie.',
       gradient: 'from-orange-500 to-orange-600'
     }
   ];
@@ -31,10 +31,10 @@ const HowItWorks = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Our Simple 3-Step Process
+            Náš jednoduchý 3-krokový proces
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From concept to completion, we make creating your mascot video simple and stress-free
+            Od nápadu až po hotové video – celý proces je s nami jednoduchý a bez stresu.
           </p>
         </div>
 

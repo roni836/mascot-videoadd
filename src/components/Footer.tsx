@@ -33,18 +33,18 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">Rýchle odkazy</h3>
             <ul className="space-y-2">
-              <li><a href="#benefits" className="text-gray-300 hover:text-white transition-colors">Why It Works</a></li>
-              <li><a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</a></li>
-              <li><a href="#examples" className="text-gray-300 hover:text-white transition-colors">Examples</a></li>
-              <li><a href="#contact" className="text-gray-300 hover:text-white transition-colors">Get Quote</a></li>
+              <li><a href="#benefits" className="text-gray-300 hover:text-white transition-colors">Ako to funguje</a></li>
+              <li><a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Cenník</a></li>
+              <li><a href="#examples" className="text-gray-300 hover:text-white transition-colors">Ukážky</a></li>
+              <li><a href="#contact" className="text-gray-300 hover:text-white transition-colors">Získať ponuku</a></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-purple-400" />
@@ -69,9 +69,9 @@ const Footer = () => {
               © 2025 MascotAds. All rights reserved.
             </div>
             <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Imprint</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Ochrana osobných údajov</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Obchodné podmienky</a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">Impresum</a>
             </div>
           </div>
         </div>
