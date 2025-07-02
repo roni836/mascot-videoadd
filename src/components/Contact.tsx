@@ -1,7 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send, Upload, Calendar, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
+  useEffect(() => {
+    if (document.getElementById('ecomail-tracker')) return;
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.id = 'ecomail-tracker';
+    script.innerHTML = `
+      (function(p,l,o,w,i,n,g){
+        if(!p[i]){
+          p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+          p.GlobalSnowplowNamespace.push(i);
+          p[i] = function(){ (p[i].q = p[i].q || []).push(arguments) };
+          p[i].q = p[i].q || [];
+          n = l.createElement(o);
+          g = l.getElementsByTagName(o)[0];
+          n.async = 1;
+          n.src = "//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js";
+          g.parentNode.insertBefore(n, g);
+        }
+      }(window, document, "script", "//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js", "ecotrack"));
+
+      window.ecotrack('newTracker', 'cf', 'd2dpiwfhf3tz0r.cloudfront.net', { appId: 'leonlogic' });
+      window.ecotrack('setUserIdFromLocation', 'ecmid');
+      window.ecotrack('trackPageView');
+    `;
+    document.body.appendChild(script);
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     businessName: '',
@@ -10,27 +39,40 @@ const Contact = () => {
     brandTone: '',
     email: ''
   });
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        businessName: '',
-        website: '',
-        product: '',
-        brandTone: '',
-        email: ''
-      });
-    }, 3000);
+  const submitToEcomail = (formData: any) => {
+    const form = document.createElement('form');
+    form.action = 'https://leonlogic.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088';
+    form.method = 'POST';
+    form.style.display = 'none';
+
+    const addField = (name: string, value: string) => {
+      const input = document.createElement('input');
+      input.name = name;
+      input.value = value;
+      input.type = 'hidden';
+      form.appendChild(input);
+    };
+
+    addField('name', formData.name);
+    addField('email', formData.email);
+    addField('businessName', formData.businessName);
+    addField('website', formData.website);
+    addField('product', formData.product);
+    addField('brandTone', formData.brandTone);
+
+    document.body.appendChild(form);
+    form.submit();
   };
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  submitToEcomail(formData);
+  setIsSubmitted(true); // ✅ add this to trigger thank you UI
+};
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -94,7 +136,7 @@ const Contact = () => {
                       placeholder="John Doe"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Názov firmy *
@@ -192,7 +234,7 @@ const Contact = () => {
             {/* Info Panel */}
             <div className="md:col-span-5 bg-gradient-to-br from-purple-600 to-teal-600 p-8 lg:p-12 text-white">
               <h3 className="text-2xl font-bold mb-6">Čo bude nasledovať?</h3>
-              
+
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
@@ -203,7 +245,7 @@ const Contact = () => {
                     <p className="text-purple-100">Vytvoríme koncept maskota na základe vašej značky</p>
                   </div>
                 </div>
-                
+
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
                     2
@@ -213,7 +255,7 @@ const Contact = () => {
                     <p className="text-purple-100">30-minútový hovor na prebratie vašej vízie a požiadaviek</p>
                   </div>
                 </div>
-                
+
                 <div className="flex gap-4">
                   <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
                     3
