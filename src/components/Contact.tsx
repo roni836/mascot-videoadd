@@ -62,6 +62,7 @@ const Contact = () => {
     addField('website', formData.website);
     addField('product', formData.product);
     addField('brandTone', formData.brandTone);
+    addField('newsletter', '1');
 
     document.body.appendChild(form);
     form.submit();
