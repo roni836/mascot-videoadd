@@ -63,15 +63,16 @@ const Contact = () => {
     addField('product', formData.product);
     addField('brandTone', formData.brandTone);
     addField('newsletter', '1');
+    addField('comingFrom', 'contact-enquiry');
 
     document.body.appendChild(form);
     form.submit();
   };
- const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  submitToEcomail(formData);
-  setIsSubmitted(true); // ✅ add this to trigger thank you UI
-};
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    submitToEcomail(formData);
+    setIsSubmitted(true); // ✅ add this to trigger thank you UI
+  };
 
 
 

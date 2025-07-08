@@ -3,10 +3,49 @@ import React, { useState, useEffect } from 'react';
 const ExitIntentPopup = () => {
   const [visible, setVisible] = useState(false);
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState({ business: '', personality: '', email: '' });
+  const [formData, setFormData] = useState({
+    business: '',
+    personality: '',
+    email: '',
+    name: '',
+    businessName: '',
+    website: '',
+    product: '',
+    brandTone: ''
+  });
   const [submitted, setSubmitted] = useState(false);
 
-  // Only show once per session
+  // Load tracking script once
+  useEffect(() => {
+    if (document.getElementById('ecomail-tracker')) return;
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.id = 'ecomail-tracker';
+    script.innerHTML = `
+      (function(p,l,o,w,i,n,g){
+        if(!p[i]){
+          p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+          p.GlobalSnowplowNamespace.push(i);
+          p[i] = function(){ (p[i].q = p[i].q || []).push(arguments) };
+          p[i].q = p[i].q || [];
+          n = l.createElement(o);
+          g = l.getElementsByTagName(o)[0];
+          n.async = 1;
+          n.src = "//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js";
+          g.parentNode.insertBefore(n, g);
+        }
+      }(window, document, "script", "//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js", "ecotrack"));
+
+      window.ecotrack('newTracker', 'cf', 'd2dpiwfhf3tz0r.cloudfront.net', { appId: 'leonlogic' });
+      window.ecotrack('setUserIdFromLocation', 'ecmid');
+      window.ecotrack('trackPageView');
+    `;
+    document.body.appendChild(script);
+  }, []);
+
+  // Exit intent listener (once per session)
   useEffect(() => {
     if (sessionStorage.getItem('exitPopupShown')) return;
     const handleMouseOut = (e: MouseEvent) => {
@@ -22,14 +61,42 @@ const ExitIntentPopup = () => {
 
   const closePopup = () => setVisible(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const submitToEcomail = (data: typeof formData) => {
+    const form = document.createElement('form');
+    form.action = 'https://leonlogic.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088';
+    form.method = 'POST';
+    form.style.display = 'none';
+
+    const addField = (name: string, value: string) => {
+      const input = document.createElement('input');
+      input.name = name;
+      input.value = value;
+      input.type = 'hidden';
+      form.appendChild(input);
+    };
+
+    addField('name', data.name || data.business); // fallback
+    addField('email', data.email);
+    addField('businessName', data.business);
+    addField('website', data.website);
+    addField('product', data.product);
+    addField('brandTone', data.personality);
+    addField('newsletter', '1');
+    addField('comingFrom', 'popup');
+
+    document.body.appendChild(form);
+    form.submit();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    submitToEcomail(formData);
     setSubmitted(true);
-    // Here you would send the form data to your backend or email service
   };
 
   if (!visible) return null;
@@ -69,7 +136,7 @@ const ExitIntentPopup = () => {
               <input
                 type="text"
                 name="business"
-                value={form.business}
+                value={formData.business}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
@@ -81,7 +148,7 @@ const ExitIntentPopup = () => {
               <input
                 type="text"
                 name="personality"
-                value={form.personality}
+                value={formData.personality}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
@@ -93,7 +160,7 @@ const ExitIntentPopup = () => {
               <input
                 type="email"
                 name="email"
-                value={form.email}
+                value={formData.email}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
