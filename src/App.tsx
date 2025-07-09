@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Benefits from './components/Benefits';
@@ -11,8 +11,11 @@ import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ExitIntentPopup from './components/ExitIntentPopup';
+import AudioWaveformPlayer from './components/AudioWaveformPlayer';
 
 function App() {
+  const [selectedPackageKey, setSelectedPackageKey] = useState<string | undefined>();
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   return (
     <div className="min-h-screen">
       <ExitIntentPopup />
@@ -20,12 +23,12 @@ function App() {
       <Hero />
       <Benefits />
       <HowItWorks />
-      <Pricing />
+      <Pricing onSelectPackage={setSelectedPackageKey} selectedAddOns={selectedAddOns} setSelectedAddOns={setSelectedAddOns} />
       <Examples />
       <Testimonials />
       <ClientLogos />
       <FAQ />
-      <Contact />
+      <Contact selectedPackageKey={selectedPackageKey} selectedAddOns={selectedAddOns} />
       <Footer />
     </div>
   );

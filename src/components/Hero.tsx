@@ -77,54 +77,37 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Oživte svoju značku s{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-teal-600">
-                vlastným maskotom na mieru!
+              Už vás nebaví miznúť v dave?
+              <br />
+              <span className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-teal-600 block mt-2">
+                Oživte svoju značku s jedinečným maskotom, ktorý predáva!
               </span>
             </h1>
-            
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Zaujmite pozornosť, zvýšte interakcie a odlíšte sa od konkurencie s 30-sekundovou animovanou videoreklamou, vytvorenou presne pre váš biznis.
+              Premeňte divákov na verných zákazníkov s pútavou 30-sekundovou animovanou videoreklamou, vytvorenou presne pre váš biznis. Získajte pozornosť, zvýšte interakcie a definitívne sa odlíšte od konkurencie.
             </p>
-
             {/* Urgency/Exclusivity Banner */}
             <div className="mx-auto lg:mx-0 my-6 flex items-center justify-center w-fit rounded-xl bg-yellow-100/80 border border-yellow-200 shadow-sm px-5 py-2 gap-2 text-base font-medium text-gray-800 backdrop-blur-sm flex items-center" style={{fontFamily: 'inherit'}}>
               <span className="text-lg">🔥</span>
               <span>
-                <span className="font-semibold text-purple-700">Exkluzívna ponuka:</span> Prijímame len
+                <span className="font-semibold text-purple-700">Pozor!</span> Prijímame len
                 <span className="text-3xl font-extrabold text-teal-600 mx-1 align-middle">15</span>
-                klientov mesačne, aby sme zaručili špičkovú kvalitu.
+                nových klientov mesačne, aby sme zaručili exkluzívnu kvalitu a osobný prístup. Nechajte si ujsť túto šancu!
               </span>
             </div>
-
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={scrollToContact}
                 className="bg-gradient-to-r from-purple-600 to-teal-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
               >
-                Chcem nezáväznú ponuku
+                CHCEM ZDARMA NEZÁVÄZNÝ KONCEPT!
                 <ArrowDown className="w-5 h-5" />
               </button>
-              
-              <button className="border-2 border-[#6B21A8] text-[#6B21A8] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#6B21A8] hover:text-white transition-colors duration-200 flex items-center justify-center gap-2">
-                <Play className="w-5 h-5" />
-                Pozrieť ukážky
-              </button>
             </div>
-
-            <div className="mt-8 flex items-center justify-center lg:justify-start gap-8 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                Dodanie do 21 dní
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                100 % originál
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                Neobmedzené revízie
-              </div>
+            <div className="flex flex-wrap gap-4 mt-6 justify-center lg:justify-start">
+              <span className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full font-semibold text-sm">Do 21 dní hotové!</span>
+              <span className="inline-block bg-teal-100 text-teal-700 px-4 py-2 rounded-full font-semibold text-sm">100 % Originál garantovaný!</span>
+              <span className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full font-semibold text-sm">Neobmedzené revízie – kým nebudete nadšení!</span>
             </div>
           </div>
 
@@ -139,7 +122,7 @@ const Hero = () => {
                     playsInline
                     className="w-full h-full object-cover rounded-xl"
                   >
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+                    <source src="/showcase.mp4" type="video/mp4" />
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-teal-400/20 flex items-center justify-center">
                       <div className="text-center text-white">
                         <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -152,7 +135,7 @@ const Hero = () => {
                 </div>
                 <div className="mt-4 text-center">
                   <p className="text-sm text-gray-600">
-                    <span className="font-semibold text-purple-600">20-second</span> sizzle reel showcase
+                    <span className="font-semibold text-purple-600">Ukážka maskotov</span>
                   </p>
                 </div>
               </div>
@@ -168,6 +151,13 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      {/* Fixed mascot image, always visible bottom left */}
+      <img
+        src="/lion-half.png"
+        alt="Maskot Lion"
+        className="absolute right-0 bottom-0 z-40 w-auto max-h-[40vh] pointer-events-none select-none hidden md:block"
+        style={{ objectFit: 'contain' }}
+      />
     </section>
   );
 };

@@ -31,10 +31,10 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Čo hovoria naši klienti
+            "Zmenili nám biznis!" - Skutočné príbehy úspechu
           </h2>
           <p className="text-xl text-gray-600">
-            Reálne výsledky od reálnych firiem.
+            Pozrite si, ako naše maskotové videá zmenili biznis našich klientov. Reálne výsledky, reálne príbehy.
           </p>
         </div>
 
@@ -80,18 +80,18 @@ const Testimonials = () => {
         <div className="mt-16 text-center">
           <div className="inline-flex items-center gap-8 bg-white rounded-full px-8 py-4 shadow-lg">
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">50+</div>
-              <div className="text-sm text-gray-600">Happy Clients</div>
+              <div className="text-2xl font-bold text-purple-600">Desiatky</div>
+              <div className="text-sm text-gray-600">spokojných klientov</div>
             </div>
             <div className="w-px h-8 bg-gray-200"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-teal-600">98%</div>
-              <div className="text-sm text-gray-600">Satisfaction Rate</div>
+              <div className="text-2xl font-bold text-teal-600">100%</div>
+              <div className="text-sm text-gray-600">garancia spokojnosti</div>
             </div>
             <div className="w-px h-8 bg-gray-200"></div>
             <div className="text-center">
               <div className="text-2xl font-bold text-orange-600">30</div>
-              <div className="text-sm text-gray-600">Day Delivery</div>
+              <div className="text-sm text-gray-600">Dodanie do 30 dní</div>
             </div>
           </div>
         </div>

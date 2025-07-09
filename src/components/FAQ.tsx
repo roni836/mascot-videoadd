@@ -32,10 +32,10 @@ const FAQ = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Často kladené otázky
+            Otázky, ktoré si kladú všetci
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Všetko, čo potrebujete vedieť o našich video maskotoch.
+            Odpovede na najčastejšie otázky o našich maskotových videách.
           </p>
         </div>
 
@@ -77,13 +77,13 @@ const FAQ = () => {
         <div className="text-center mt-12">
           <div className="bg-gradient-to-r from-purple-50 to-teal-50 rounded-2xl p-8">
             <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Still have questions?
+              Stále máte otázky?
             </h3>
             <p className="text-gray-600 mb-4">
-              We're here to help! Get in touch and we'll answer any questions you have.
+              Sme tu pre vás! Kontaktujte nás a odpovieme na všetky vaše otázky.
             </p>
             <button className="bg-gradient-to-r from-purple-600 to-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
-              Contact Us
+              Kontaktovať nás
             </button>
           </div>
         </div>

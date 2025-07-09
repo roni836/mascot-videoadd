@@ -15,8 +15,7 @@ const Footer = () => {
               <span className="text-xl font-bold">MascotAds</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
-              Creating memorable mascot video ads that help small and medium businesses 
-              stand out, engage customers, and drive more sales.
+              Vytvárame nezabudnuteľné maskotové video reklamy, ktoré pomáhajú malým a stredným firmám vyniknúť, zapojiť zákazníkov a zvýšiť predaj.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
