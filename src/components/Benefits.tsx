@@ -37,7 +37,13 @@ const Benefits = () => {
             Premeňte svoj biznis na ikonickú značku, ktorú si zákazníci nielen zapamätajú, ale aj zamilujú a ktorej budú bezpodmienečne dôverovať.
           </p>
           <div className="flex justify-center mt-8">
-            <button className="border-2 border-[#6B21A8] text-[#6B21A8] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#6B21A8] hover:text-white transition-colors duration-200 flex items-center justify-center gap-2">
+            <button
+              className="border-2 border-[#6B21A8] text-[#6B21A8] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#6B21A8] hover:text-white transition-colors duration-200 flex items-center justify-center gap-2"
+              onClick={() => {
+                const el = document.getElementById('gallery');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               <ArrowDown className="w-5 h-5" />
               Pozrieť ukážky
             </button>

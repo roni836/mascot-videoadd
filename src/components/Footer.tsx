@@ -1,5 +1,5 @@
 import React from 'react';
-import { Video, Mail, Phone, MapPin } from 'lucide-react';
+import { Video, Mail, Phone, MapPin, Briefcase, BadgePercent, BadgeCheck } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -7,29 +7,31 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-teal-500 rounded-xl flex items-center justify-center">
                 <Video className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold">MascotAds</span>
+              <span className="text-xl font-bold">LeoMedia</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Vytvárame nezabudnuteľné maskotové video reklamy, ktoré pomáhajú malým a stredným firmám vyniknúť, zapojiť zákazníkov a zvýšiť predaj.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
-                <span className="text-sm">📧</span>
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
-                <span className="text-sm">📱</span>
-              </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
-                <span className="text-sm">🎬</span>
-              </a>
-            </div>
           </div>
-
+          {/* Kontakt - now its own column */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
+            <ul className="space-y-3 text-gray-300 text-base">
+              <li className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-purple-400" />
+                <span>cyril@leonlogic.sk</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-purple-400" />
+                <span>+421 915 376 588</span>
+              </li>
+            </ul>
+          </div>
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Rýchle odkazy</h3>
@@ -40,37 +42,37 @@ const Footer = () => {
               <li><a href="#contact" className="text-gray-300 hover:text-white transition-colors">Získať ponuku</a></li>
             </ul>
           </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-purple-400" />
-                <span className="text-gray-300">hello@mascotads.com</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-purple-400" />
-                <span className="text-gray-300">+49 123 456 789</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-purple-400" />
-                <span className="text-gray-300">Berlin, Germany</span>
-              </div>
-            </div>
+          {/* Other Services */}
+          <div className="border-t md:border-t-0 md:border-l border-gray-800 pl-0 md:pl-8 pt-8 md:pt-0">
+            <h3 className="text-lg font-semibold mb-4">Ostatné služby</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Webdizajn a tvorba webstránok</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Optimalizácia SEO</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Marketingové služby</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Grafické práce</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Branding</a></li>
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="text-gray-400 text-sm">
-              © 2025 MascotAds. All rights reserved.
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full">
+            <div className="flex items-center gap-2 text-xs text-gray-400">
+              <img src="/slovakia.svg" alt="Slovak flag" className="w-5 h-5" />
+              <span>Made in Slovakia</span>
             </div>
-            <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Ochrana osobných údajov</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Obchodné podmienky</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Impresum</a>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs text-gray-400 w-full sm:w-auto justify-end">
+              <span className="font-semibold">OREM VENTURES s.r.o.</span>
+              <span className="hidden sm:inline-block">|</span>
+              <span>IČO: 52514901</span>
+              <span className="hidden sm:inline-block">|</span>
+              <span>DIČ: 2121045058</span>
+              <span className="hidden sm:inline-block">|</span>
+              <span>nie sme platiteľ DPH</span>
+            </div>
+            <div className="text-gray-400 text-sm">
+              © 2025 <a href="https://leonlogic.sk/" target="_blank" rel="noopener noreferrer" className="hover:underline text-gray-400">Leonlogic</a>. All rights reserved.
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyVideo from './LazyVideo';
 
 const TikTokPostMockup: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const TikTokPostMockup: React.FC = () => {
       </div>
       {/* Video + Actions */}
       <div className="relative w-full aspect-square bg-black">
-        <video
+        <LazyVideo
           src="/showcase.mp4"
           autoPlay
           muted

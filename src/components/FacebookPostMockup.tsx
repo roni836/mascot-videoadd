@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import LazyVideo from './LazyVideo';
 
 // Animated hearts component
 const AnimatedHearts: React.FC = () => (
@@ -124,7 +125,7 @@ const FacebookPostMockup: React.FC = () => {
         onFocus={showControlsTemporarily}
         onBlur={() => setShowControls(false)}
       >
-        <video
+        <LazyVideo
           ref={videoRef}
           src="/cupkacik.mp4"
           autoPlay

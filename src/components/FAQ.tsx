@@ -82,9 +82,12 @@ const FAQ = () => {
             <p className="text-gray-600 mb-4">
               Sme tu pre vás! Kontaktujte nás a odpovieme na všetky vaše otázky.
             </p>
-            <button className="bg-gradient-to-r from-purple-600 to-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+            <a
+              href="mailto:cyril@leonlogic.sk"
+              className="bg-gradient-to-r from-purple-600 to-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-200 inline-block"
+            >
               Kontaktovať nás
-            </button>
+            </a>
           </div>
         </div>
       </div>

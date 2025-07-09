@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Play, ArrowDown } from 'lucide-react';
+import LazyVideo from './LazyVideo';
 
 const Hero = () => {
   const scrollToContact = () => {
@@ -92,7 +93,7 @@ const Hero = () => {
               <span>
                 <span className="font-semibold text-purple-700">Pozor!</span> Prijímame len
                 <span className="text-3xl font-extrabold text-teal-600 mx-1 align-middle">15</span>
-                nových klientov mesačne, aby sme zaručili exkluzívnu kvalitu a osobný prístup. Nechajte si ujsť túto šancu!
+                nových klientov mesačne, aby sme zaručili exkluzívnu kvalitu a osobný prístup.
               </span>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -104,18 +105,32 @@ const Hero = () => {
                 <ArrowDown className="w-5 h-5" />
               </button>
             </div>
-            <div className="flex flex-wrap gap-4 mt-6 justify-center lg:justify-start">
-              <span className="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full font-semibold text-sm">Do 21 dní hotové!</span>
-              <span className="inline-block bg-teal-100 text-teal-700 px-4 py-2 rounded-full font-semibold text-sm">100 % Originál garantovaný!</span>
-              <span className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full font-semibold text-sm">Neobmedzené revízie – kým nebudete nadšení!</span>
+            <div className="flex flex-wrap items-center gap-3 mt-6 justify-center lg:justify-start">
+              <span className="flex items-center gap-2 font-semibold text-gray-600 text-sm">
+                <span className="inline-block w-3 h-3 rounded-full bg-green-500 animate-pulse-dot"></span>
+                Do 21 dní hotové!
+              </span>
+              <span className="flex items-center gap-2 font-semibold text-gray-600 text-sm">
+                <span className="inline-block w-3 h-3 rounded-full bg-green-500 animate-pulse-dot"></span>
+                100 % Originál garantovaný!
+              </span>
             </div>
+            <style>{`
+              @keyframes pulse-dot {
+                0%, 100% { opacity: 1; transform: scale(1); }
+                50% { opacity: 0.6; transform: scale(1.3); }
+              }
+              .animate-pulse-dot {
+                animation: pulse-dot 1.2s infinite;
+              }
+            `}</style>
           </div>
 
           <div className="relative">
             <div className="relative bg-gradient-to-br from-purple-100 to-teal-100 rounded-3xl p-8 transform rotate-1 hover:rotate-0 transition-transform duration-500">
               <div className="bg-white rounded-2xl p-8 shadow-xl">
                 <div className="aspect-video bg-black rounded-xl relative overflow-hidden">
-                  <video
+                  <LazyVideo
                     autoPlay
                     muted
                     loop
@@ -131,7 +146,7 @@ const Hero = () => {
                         <p className="font-medium">Mascot Sizzle Reel</p>
                       </div>
                     </div>
-                  </video>
+                  </LazyVideo>
                 </div>
                 <div className="mt-4 text-center">
                   <p className="text-sm text-gray-600">

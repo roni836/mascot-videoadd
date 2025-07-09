@@ -20,13 +20,13 @@ const Header = () => {
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-teal-500 rounded-xl flex items-center justify-center">
               <Video className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">MascotAds</span>
+            <span className="text-xl font-bold text-gray-900">LeoMedia</span>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection('benefits')}
+              onClick={() => scrollToSection('howitworks')}
               className="text-gray-600 hover:text-purple-600 transition-colors"
             >
               Ako to funguje
@@ -65,7 +65,7 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
               <button
-                onClick={() => scrollToSection('benefits')}
+                onClick={() => scrollToSection('howitworks')}
                 className="text-gray-600 hover:text-purple-600 transition-colors text-left"
               >
                 Ako to funguje

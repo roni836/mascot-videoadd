@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyVideo from './LazyVideo';
 
 const InstagramPostMockup: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ const InstagramPostMockup: React.FC = () => {
       </div>
       {/* Video */}
       <div className="w-full aspect-square bg-black">
-        <video
+        <LazyVideo
           src="/showcase.mp4"
           autoPlay
           muted

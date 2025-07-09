@@ -80,12 +80,13 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPackage, selectedAddOns, setS
   };
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
+    <section id="pricing" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="text-base md:text-lg text-teal-700 font-semibold mb-2">Investícia, ktorá sa Vám vráti:</div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Jasný cenník, ohromujúce výsledky.
+            <div className="mt-2 text-lg font-semibold text-purple-600">Uvítacia zľava pre prvých 15 zakazníkov</div>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
             Vyberte si balík, ktorý vám najviac vyhovuje. Všetky balíky obsahujú kompletné služby od návrhu po finálne video.
@@ -100,7 +101,15 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPackage, selectedAddOns, setS
                   <span className={`text-xs font-semibold ${idx === 1 ? 'text-purple-500' : 'text-gray-400'}`}>{idx === 0 ? 'Získajte pozornosť hneď!' : idx === 1 ? 'Rozšírte svoj príbeh!' : 'Dominujte trhu s príbehom!'}</span>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-1">{pkg.name}</h3>
-                <div className={`text-4xl font-bold mt-4 ${idx === 1 ? 'text-purple-600' : 'text-gray-900'}`}>{pkg.priceText}</div>
+                {/* Discount badge */}
+                <div className="mb-2">
+                  <span className="inline-block bg-gradient-to-r from-purple-500 to-teal-400 text-white text-xs font-bold px-3 py-1 rounded-full">Uvítacia zľava -10%</span>
+                </div>
+                {/* Price with discount */}
+                <div className="flex items-center gap-3 justify-start mt-2 mb-1">
+                  <span className="text-2xl font-semibold text-gray-400 line-through">{pkg.priceText}</span>
+                  <span className={`text-4xl font-bold ${idx === 1 ? 'text-purple-600' : 'text-teal-600'}`}>{(pkg.price * 0.9).toFixed(0)} €</span>
+                </div>
                 <p className={`text-sm ${idx === 1 ? 'text-purple-400' : 'text-gray-400'}`}>bez DPH</p>
               </div>
               <div className="p-8 flex-1 flex flex-col">
@@ -123,7 +132,7 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPackage, selectedAddOns, setS
           Všetky ceny sú uvedené bez DPH / nie sme platitelia DPH. Nakombinujte si doplnky podľa vašich potrieb.
         </p>
         {/* Doplnky Section */}
-        <div className="max-w-5xl mx-auto mt-16">
+        <div id="gallery" className="max-w-5xl mx-auto mt-16">
           <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Obľúbené doplnky</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {addOns.map(addon => {
@@ -216,7 +225,7 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPackage, selectedAddOns, setS
           </div>
         </div>
         {/* Facebook Results Section */}
-        <div className="max-w-5xl mx-auto mt-20 mb-20">
+        <div className="max-w-5xl mx-auto mt-20 mb-20 relative">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 text-center">Skutočné výsledky našich videí na Facebooku</h2>
           <p className="text-lg md:text-xl text-gray-600 mb-10 text-center">Naše videá dosahujú virálne výsledky už v prvých dňoch kampane.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -231,6 +240,13 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPackage, selectedAddOns, setS
           </div>
         </div>
       </div>
+      {/* Mascot image at the absolute bottom-left of the entire Pricing section */}
+      <img
+        src="/cupko.png"
+        alt="Maskot Cupko"
+        className="absolute left-0 bottom-0 z-40 w-auto max-h-[40vh] pointer-events-none select-none hidden md:block"
+        style={{ objectFit: 'contain' }}
+      />
     </section>
   );
 };

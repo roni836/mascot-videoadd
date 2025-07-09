@@ -4,6 +4,7 @@ import FacebookPostMockup from './FacebookPostMockup';
 import InstagramPostMockup from './InstagramPostMockup';
 import TikTokPostMockup from './TikTokPostMockup';
 import AudioWaveformPlayer from './AudioWaveformPlayer';
+import LazyVideo from './LazyVideo';
 
 const Examples = () => {
   const industries = [
@@ -84,7 +85,7 @@ const Examples = () => {
                 </p>
                 <div className="bg-white rounded-xl p-4 shadow-sm group-hover:shadow-md transition-shadow duration-300">
                   <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
-                    <video
+                    <LazyVideo
                       autoPlay
                       muted
                       loop
@@ -97,7 +98,7 @@ const Examples = () => {
                           {industry.title} Mascot
                         </span>
                       </div>
-                    </video>
+                    </LazyVideo>
                   </div>
                 </div>
               </div>
@@ -112,9 +113,9 @@ const Examples = () => {
         {/* Audio waveform player section above social media mockups */}
         <section className="max-w-2xl mx-auto px-4 py-12">
           <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Ukážka hlasových stôp pre lip sync</h3>
-          <AudioWaveformPlayer />
-          <AudioWaveformPlayer />
-          <AudioWaveformPlayer />
+          <AudioWaveformPlayer src="/maskot3.mp3" />
+          <AudioWaveformPlayer src="/maskot1.mp3" />
+          <AudioWaveformPlayer src="/maskot2.mp3" />
         </section>
 
         {/* CTA: Info text and button moved here */}
@@ -122,7 +123,13 @@ const Examples = () => {
           <p className="text-gray-600 mb-6">
             Nenašli ste svoje odvetvie? Vytvoríme maskota na mieru pre akýkoľvek typ podnikania!
           </p>
-          <button className="bg-gradient-to-r from-purple-600 to-teal-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+          <button
+            className="bg-gradient-to-r from-purple-600 to-teal-600 text-white px-10 py-5 rounded-full font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+            onClick={() => {
+              const el = document.getElementById('contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Objednať maskota
           </button>
         </div>
