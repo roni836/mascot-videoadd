@@ -3,11 +3,49 @@ import React, { useState, useEffect } from 'react';
 const ExitIntentPopup = () => {
   const [visible, setVisible] = useState(false);
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState({ business: '', personality: '', email: '' });
+  const [formData, setFormData] = useState({
+    business: '',
+    personality: '',
+    email: '',
+    name: '',
+    businessName: '',
+    website: '',
+    product: '',
+    brandTone: ''
+  });
   const [submitted, setSubmitted] = useState(false);
-  const [agreed, setAgreed] = useState(false);
 
-  // Only show once per session
+  // Load tracking script once
+  useEffect(() => {
+    if (document.getElementById('ecomail-tracker')) return;
+
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.id = 'ecomail-tracker';
+    script.innerHTML = `
+      (function(p,l,o,w,i,n,g){
+        if(!p[i]){
+          p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+          p.GlobalSnowplowNamespace.push(i);
+          p[i] = function(){ (p[i].q = p[i].q || []).push(arguments) };
+          p[i].q = p[i].q || [];
+          n = l.createElement(o);
+          g = l.getElementsByTagName(o)[0];
+          n.async = 1;
+          n.src = "//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js";
+          g.parentNode.insertBefore(n, g);
+        }
+      }(window, document, "script", "//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js", "ecotrack"));
+
+      window.ecotrack('newTracker', 'cf', 'd2dpiwfhf3tz0r.cloudfront.net', { appId: 'leonlogic' });
+      window.ecotrack('setUserIdFromLocation', 'ecmid');
+      window.ecotrack('trackPageView');
+    `;
+    document.body.appendChild(script);
+  }, []);
+
+  // Exit intent listener (once per session)
   useEffect(() => {
     if (sessionStorage.getItem('exitPopupShown')) return;
     const handleMouseOut = (e: MouseEvent) => {
@@ -23,14 +61,42 @@ const ExitIntentPopup = () => {
 
   const closePopup = () => setVisible(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const submitToEcomail = (data: typeof formData) => {
+    const form = document.createElement('form');
+    form.action = 'https://leonlogic.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088';
+    form.method = 'POST';
+    form.style.display = 'none';
+
+    const addField = (name: string, value: string) => {
+      const input = document.createElement('input');
+      input.name = name;
+      input.value = value;
+      input.type = 'hidden';
+      form.appendChild(input);
+    };
+
+    addField('name', data.name || data.business); // fallback
+    addField('email', data.email);
+    addField('businessName', data.business);
+    addField('website', data.website);
+    addField('product', data.product);
+    addField('brandTone', data.personality);
+    addField('newsletter', '1');
+    addField('comingFrom', 'popup');
+
+    document.body.appendChild(form);
+    form.submit();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    submitToEcomail(formData);
     setSubmitted(true);
-    // Here you would send the form data to your backend or email service
   };
 
   if (!visible) return null;
@@ -42,7 +108,7 @@ const ExitIntentPopup = () => {
       {/* Pop-up Window */}
       <div className="relative z-10 w-full max-w-md mx-auto bg-white rounded-2xl shadow-2xl p-8 animate-fadeIn flex flex-col items-center">
         {/* Step 1: The Hook */}
-        {step === 1 && !submitted && (
+         {step === 1 && !submitted && (
           <>
             <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 text-center">POČKAJTE! Neodchádzajte bez svojho bezplatného návrhu maskota!</h2>
             <p className="text-gray-700 text-base mb-8 text-center">Odpovedzte na 3 jednoduché otázky a naši umelci vám zdarma navrhnú maskota na mieru vašej značky. Žiadny záväzok.</p>
@@ -64,83 +130,69 @@ const ExitIntentPopup = () => {
         {/* Step 2: Questionnaire */}
         {step === 2 && !submitted && (
           <form className="w-full" onSubmit={handleSubmit}>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 text-center">Super! Poďme vdýchnuť život vašej značke.</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 text-center">Awesome! Let's bring your brand to life.</h2>
             <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-1">Ako sa volá vaša firma?</label>
+              <label className="block text-gray-700 font-medium mb-1">What is your business name?</label>
               <input
                 type="text"
                 name="business"
-                value={form.business}
+                value={formData.business}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                placeholder="napr. Sladké Sny Café"
+                placeholder="e.g. Sweet Dreams Café"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 font-medium mb-1">Opíšte osobnosť vašej značky...</label>
+              <label className="block text-gray-700 font-medium mb-1">Describe your brand's personality...</label>
               <input
                 type="text"
                 name="personality"
-                value={form.personality}
+                value={formData.personality}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                placeholder="napr. Veselá, priateľská, energická"
+                placeholder="e.g. Fun, friendly, energetic"
               />
             </div>
             <div className="mb-6">
-              <label className="block text-gray-700 font-medium mb-1">Kam vám môžeme poslať návrh?</label>
+              <label className="block text-gray-700 font-medium mb-1">Where should we send your free concept?</label>
               <input
                 type="email"
                 name="email"
-                value={form.email}
+                value={formData.email}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                placeholder="vas@email.com"
+                placeholder="you@email.com"
               />
             </div>
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-purple-600 to-teal-600 text-white text-lg font-semibold py-4 rounded-full shadow-lg hover:scale-105 transition-transform"
-              disabled={!agreed}
             >
-              🎨 Poslať návrh!
+              🎨 Send My Concept!
             </button>
-            <div className="flex items-center justify-center mt-4 mb-2">
-              <input
-                id="gdpr-agree-popup"
-                type="checkbox"
-                checked={agreed}
-                onChange={e => setAgreed(e.target.checked)}
-                required
-                className="w-5 h-5 accent-purple-600 rounded mr-2"
-              />
-              <label htmlFor="gdpr-agree-popup" className="text-sm text-gray-700 select-none cursor-pointer">
-                Súhlasím s ochranou osobných údajov
-              </label>
-            </div>
             <button
               className="block text-sm text-gray-400 hover:text-gray-600 underline mx-auto mt-4"
               onClick={closePopup}
               type="button"
               tabIndex={0}
             >
-              Nie, nemám záujem.
+              No thanks, I'm not interested.
             </button>
           </form>
         )}
         {/* Step 3: Success Message */}
         {submitted && (
           <div className="w-full text-center">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-teal-600 mb-4">Hotovo! Naši umelci sa už pripravujú.</h2>
-            <p className="text-gray-700 text-base mb-2">Váš bezplatný návrh maskota je na ceste. Sledujte svoju e-mailovú schránku – návrh dostanete do 2-3 pracovných dní!</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-teal-600 mb-4">Success! Our artists are warming up.</h2>
+            <p className="text-gray-700 text-base mb-2">Your free mascot concept is being created. Keep an eye on your inbox—you'll receive it in 2-3 business days!</p>
             <button
               className="mt-6 text-sm text-gray-400 hover:text-gray-600 underline"
               onClick={closePopup}
             >
-              Zavrieť
+              Close
             </button>
           </div>
         )}
