@@ -4,23 +4,23 @@ import { Star, Quote } from 'lucide-react';
 const Testimonials = () => {
   const testimonials = [
     {
-      name: 'Anna Schmidt',
-      business: 'Sweet Dreams Café',
-      text: 'Naša reklama s maskotom mala 5x väčší dosah ako čokoľvek predtým! Zákazníci milujú našu malú pekársku postavičku a často ju spomínajú pri návšteve.',
+      name: 'Monika O.',
+      business: 'TortyM',
+      text: 'Naša reklama s maskotom mala 5x väčší dosah ako čokoľvek predtým! Zákazníci milujú nášho Cupkáčika a často ju spomínajú pri návšteve.',
       rating: 5,
       avatar: '👩‍🍳'
     },
     {
-      name: 'Tom Müller',
-      business: 'Pro Tools Rental',
+      name: 'Igor K.',
+      business: '',
       text: "Je to ako mať ambasádora značky vo videu! Maskot skvele vysvetľuje naše služby a robí nás prístupnejšími ako konkurencia.",
       rating: 5,
       avatar: '👨‍🔧'
     },
     {
-      name: 'Lisa Chen',
-      business: 'FitLife Studio',
-      text: 'Animovaná postavička dokonale vystihuje energiu nášho fitka. Noví členovia často hovoria, že sa pridali práve kvôli nášmu zábavnému maskotovému videu na Instagrame!',
+      name: 'Mária Š.',
+      business: '',
+      text: 'Animovaná postavička dokonale vystihuje energiu nášej značky. Noví členovia často hovoria, že sa pridali práve kvôli nášmu zábavnému maskotovému videu na Instagrame!',
       rating: 5,
       avatar: '👩‍💼'
     }
@@ -90,8 +90,8 @@ const Testimonials = () => {
             </div>
             <div className="w-px h-8 bg-gray-200"></div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600">30</div>
-              <div className="text-sm text-gray-600">Dodanie do 30 dní</div>
+              <div className="text-2xl font-bold text-orange-600">14</div>
+              <div className="text-sm text-gray-600">Dodanie do 14 dní</div>
             </div>
           </div>
         </div>

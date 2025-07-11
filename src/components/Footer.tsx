@@ -8,11 +8,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-teal-500 rounded-xl flex items-center justify-center">
-                <Video className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">LeoMedia</span>
+            <div className="flex items-center mb-4">
+              <img src="/logo.webp" alt="LeoMedia logo" className="h-10 w-auto" />
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Vytvárame nezabudnuteľné maskotové video reklamy, ktoré pomáhajú malým a stredným firmám vyniknúť, zapojiť zákazníkov a zvýšiť predaj.
@@ -61,6 +58,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 text-xs text-gray-400">
               <img src="/slovakia.svg" alt="Slovak flag" className="w-5 h-5" />
               <span>Made in Slovakia</span>
+              <a href="/ochrana-osobnych-udajov" className="ml-4 underline text-gray-500 hover:text-white text-xs">Ochrana osobných údajov</a>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs text-gray-400 w-full sm:w-auto justify-end">
               <span className="font-semibold">OREM VENTURES s.r.o.</span>

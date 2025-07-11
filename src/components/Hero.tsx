@@ -108,7 +108,7 @@ const Hero = () => {
             <div className="flex flex-wrap items-center gap-3 mt-6 justify-center lg:justify-start">
               <span className="flex items-center gap-2 font-semibold text-gray-600 text-sm">
                 <span className="inline-block w-3 h-3 rounded-full bg-green-500 animate-pulse-dot"></span>
-                Do 21 dní hotové!
+                Do 14 dní hotové!
               </span>
               <span className="flex items-center gap-2 font-semibold text-gray-600 text-sm">
                 <span className="inline-block w-3 h-3 rounded-full bg-green-500 animate-pulse-dot"></span>

@@ -37,7 +37,7 @@ const HowItWorks = () => {
             Od nápadu až po hotové video – celý proces je s nami jednoduchý a bez stresu.
           </p>
           <div className="text-gray-500 text-sm mt-6">
-            Priemerná doba dodania: 21 dní<br />
+            Priemerná doba dodania: 14 dní<br />
             100% garancia spokojnosti
           </div>
         </div>

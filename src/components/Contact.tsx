@@ -37,7 +37,8 @@ const Contact = () => {
     website: '',
     product: '',
     brandTone: '',
-    email: ''
+    email: '',
+    phone:''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -58,6 +59,7 @@ const Contact = () => {
 
     addField('name', formData.name);
     addField('email', formData.email);
+    addField('phone', formData.phone);
     addField('businessName', formData.businessName);
     addField('website', formData.website);
     addField('product', formData.product);
@@ -210,6 +212,19 @@ const Contact = () => {
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                     placeholder="john@yourbusiness.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Telefónne číslo
+                  </label>
+                  <input
+                    type="number"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    placeholder="09123456789"
                   />
                 </div>
 

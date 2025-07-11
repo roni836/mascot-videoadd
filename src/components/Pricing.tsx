@@ -15,7 +15,7 @@ export const packages = [
       'Dodanie videa v HD kvalite (1080p)',
       'Kompletné komerčné práva',
       'Až 3 kolá revízií',
-      'Dodanie do 21 dní'
+      'Dodanie do 14 dní'
     ]
   },
   {
@@ -31,7 +31,7 @@ export const packages = [
       'Dodanie videa v HD kvalite (1080p)',
       'Kompletné komerčné práva',
       'Až 3 kolá revízií',
-      'Dodanie do 21 dní'
+      'Dodanie do 14 dní'
     ]
   },
   {
@@ -47,7 +47,7 @@ export const packages = [
       'Dodanie videa v HD kvalite (1080p)',
       'Kompletné komerčné práva',
       'Až 3 kolá revízií',
-      'Dodanie do 21 dní'
+      'Dodanie do 14 dní'
     ]
   }
 ];
@@ -94,8 +94,8 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPackage, selectedAddOns, setS
         </div>
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
           {packages.map((pkg, idx) => (
-            <div key={pkg.key} className={`bg-white rounded-3xl shadow-xl border-2 flex flex-col ${idx === 1 ? 'border-purple-500 scale-105 z-10 border-4 relative -mt-8' : 'border-gray-200'} flex-1 min-w-[360px] w-full`}>
-              <div className="px-8 py-6">
+            <div key={pkg.key} className={`bg-white rounded-3xl shadow-xl border-2 flex flex-col w-full max-w-md mx-auto mb-8 md:mb-0 ${idx === 1 ? 'border-purple-500 md:scale-105 z-10 border-4 relative md:-mt-8' : 'border-gray-200'} flex-1 min-w-0`}>
+              <div className="px-4 py-6 md:px-8">
                 <div className="flex flex-col items-start mb-2">
                   <span className="text-xs font-bold uppercase tracking-wide text-teal-600 mb-1">{pkg.label}</span>
                   <span className={`text-xs font-semibold ${idx === 1 ? 'text-purple-500' : 'text-gray-400'}`}>{idx === 0 ? 'Získajte pozornosť hneď!' : idx === 1 ? 'Rozšírte svoj príbeh!' : 'Dominujte trhu s príbehom!'}</span>
@@ -112,7 +112,7 @@ const Pricing: React.FC<PricingProps> = ({ onSelectPackage, selectedAddOns, setS
                 </div>
                 <p className={`text-sm ${idx === 1 ? 'text-purple-400' : 'text-gray-400'}`}>bez DPH</p>
               </div>
-              <div className="p-8 flex-1 flex flex-col">
+              <div className="p-4 md:p-8 flex-1 flex flex-col">
                 <ul className="space-y-3 mb-6 flex-1">
                   {pkg.features.map((feature, i) => (
                     <li key={i} className="flex items-center gap-3"><Check className="w-5 h-5 text-green-500 flex-shrink-0" /><span className="text-gray-700">{feature}</span></li>
