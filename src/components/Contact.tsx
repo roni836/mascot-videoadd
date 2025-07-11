@@ -2,15 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { Send, Upload, Calendar, CheckCircle } from 'lucide-react';
 import { packages, addOns } from './Pricing';
 
-type ContactProps = {
+interface ContactProps {
   selectedPackageKey?: string;
   selectedAddOns?: string[];
-};
+}
 
-type AddOn = { key: string; name: string; price: number; icon: React.ReactNode };
+interface FormData {
+  name: string;
+  businessName: string;
+  website: string;
+  product: string;
+  brandTone: string;
+  email: string;
+  phone: string;
+  package: string;
+  addOns: string[];
+}
 
-const Contact: React.FC<ContactProps> = ({ selectedPackageKey, selectedAddOns = [] }) => {
-  const [formData, setFormData] = useState({
+const Contact: React.FC<ContactProps> = ({
+  selectedPackageKey,
+  selectedAddOns = []
+}) => {
+  const [agreed, setAgreed] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     businessName: '',
     website: '',
@@ -21,83 +37,106 @@ const Contact: React.FC<ContactProps> = ({ selectedPackageKey, selectedAddOns = 
     package: selectedPackageKey || packages[0].key,
     addOns: selectedAddOns,
   });
-  const [agreed, setAgreed] = useState(false);
 
+  // Keep props in sync if they ever change
   useEffect(() => {
-    if (selectedPackageKey && selectedPackageKey !== formData.package) {
-      setFormData((prev) => ({ ...prev, package: selectedPackageKey }));
-    }
-    // Sync add-ons if prop changes
-    if (
-      selectedAddOns &&
-      (selectedAddOns.length !== (formData.addOns?.length || 0) ||
-        !selectedAddOns.every((k) => formData.addOns?.includes(k)))
-    ) {
-      setFormData((prev) => ({ ...prev, addOns: selectedAddOns }));
-    }
+    setFormData(fd => ({
+      ...fd,
+      package: selectedPackageKey || packages[0].key,
+      addOns: selectedAddOns,
+    }));
   }, [selectedPackageKey, selectedAddOns]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Ecomail tracker
+  useEffect(() => {
+    if (document.getElementById('ecmtr-script')) return;
+
+    const script = document.createElement('script');
+    script.id = 'ecmtr-script';
+    script.async = true;
+    script.src = '//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js';
+    script.onload = () => {
+      window.ecotrack('newTracker', 'cf', 'd2dpiwfhf3tz0r.cloudfront.net', {
+        appId: 'leonlogic'
+      });
+      window.ecotrack('setUserIdFromLocation', 'ecmid');
+      window.ecotrack('trackPageView');
+    };
+    document.body.appendChild(script);
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData(fd => ({ ...fd, [name]: value }));
+  };
+
+  const handleAddOnToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    setFormData(fd => ({
+      ...fd,
+      addOns: checked
+        ? [...fd.addOns, value]
+        : fd.addOns.filter(key => key !== value)
+    }));
+  };
+
+  const submitToEcomail = (data: FormData) => {
+    const form = document.createElement('form');
+    form.action =
+      'https://leonlogic.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088';
+    form.method = 'POST';
+    form.style.display = 'none';
+
+    const addField = (name: string, val: string) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = val;
+      form.appendChild(input);
+    };
+
+    addField('name', data.name);
+    addField('email', data.email);
+    addField('phone', data.phone);
+    addField('businessName', data.businessName);
+    addField('website', data.website);
+    addField('product', data.product);
+    addField('brandTone', data.brandTone);
+    addField('newsletter', '1');
+    addField('comingFrom', 'contact-enquiry');
+    // include add-ons if you need them
+    if (data.addOns.length) {
+      addField('addOns', data.addOns.join(','));
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!agreed) return;
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
+    submitToEcomail(formData);
     setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        businessName: '',
-        website: '',
-        product: '',
-        brandTone: '',
-        email: '',
-        phone: '',
-        package: packages[0].key,
-        addOns: [],
-      });
-    }, 3000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    if (name === 'addOns') {
-      // Only checkboxes for addOns
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData((prev) => ({
-        ...prev,
-        addOns: checked
-          ? [...(prev.addOns || []), value]
-          : (prev.addOns || []).filter((k: string) => k !== value),
-      }));
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value
-      });
-    }
   };
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-20 bg-gradient-to-br from-green-50 to-teal-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-3xl p-12 shadow-xl">
-            <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Thank You! We'll Be In Touch Soon
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              We've received your request and will send you a custom concept idea within 24 hours.
+      <section id="contact" className="py-20 bg-green-50">
+        <div className="max-w-4xl mx-auto p-12 bg-white rounded-3xl shadow-xl text-center">
+          <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Thank You! We'll Be In Touch Soon
+          </h2>
+          <p className="text-xl text-gray-600 mb-8">
+            We've received your request and will send you a custom concept idea
+            within 24 hours.
+          </p>
+          <div className="bg-green-50 rounded-2xl p-6">
+            <p className="text-green-800 font-medium">
+              📧 Check your email for our welcome message and next steps!
             </p>
-            <div className="bg-green-50 rounded-2xl p-6">
-              <p className="text-green-800 font-medium">
-                📧 Check your email for our welcome message and next steps!
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -119,22 +158,19 @@ const Contact: React.FC<ContactProps> = ({ selectedPackageKey, selectedAddOns = 
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Form container */}
           <div className="bg-white rounded-3xl shadow-2xl w-full lg:w-1/2 p-8 lg:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* package select */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Vyberte si balík *
                 </label>
-                <div className="mb-2">
-                  <span className="inline-block bg-gradient-to-r from-purple-500 to-teal-400 text-white text-xs font-bold px-3 py-1 rounded-full">Uvítacia zľava -10%</span>
-                </div>
                 <select
                   name="package"
                   value={formData.package}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-purple-400 bg-purple-50 rounded-xl text-purple-700 font-semibold focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
                 >
                   {packages.map(pkg => (
                     <option key={pkg.key} value={pkg.key}>
@@ -143,61 +179,64 @@ const Contact: React.FC<ContactProps> = ({ selectedPackageKey, selectedAddOns = 
                   ))}
                 </select>
               </div>
-              {/* Doplnky (Add-ons) checkboxes - moved here */}
+
+              {/* add-ons */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Pridať doplnky (voliteľné)
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {(addOns as AddOn[]).map((addon) => (
-                    <label key={addon.key} className="flex items-center gap-3 bg-purple-50 rounded-xl px-4 py-3 cursor-pointer border border-purple-100 hover:border-purple-400 transition-all">
+                  {addOns.map(addon => (
+                    <label
+                      key={addon.key}
+                      className="flex items-center gap-3 border rounded-xl px-4 py-3"
+                    >
                       <input
                         type="checkbox"
-                        name="addOns"
                         value={addon.key}
-                        checked={formData.addOns?.includes(addon.key) || false}
-                        onChange={handleChange}
-                        className="accent-purple-600 w-5 h-5 rounded"
+                        checked={formData.addOns.includes(addon.key)}
+                        onChange={handleAddOnToggle}
+                        className="accent-purple-600 w-5 h-5"
                       />
-                      <span className="text-sm text-purple-800 font-medium">{addon.name} <span className="text-purple-500 font-semibold">+{addon.price} €</span></span>
+                      <span className="text-sm">
+                        {addon.name} <strong>+{addon.price} €</strong>
+                      </span>
                     </label>
                   ))}
                 </div>
               </div>
+
+              {/* name, business */}
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Vaše meno *
-                  </label>
+                  <label className="block text-sm mb-2">Vaše meno *</label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
                     placeholder="Ján Novák"
                   />
                 </div>
-                
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Názov firmy *
-                  </label>
+                  <label className="block text-sm mb-2">Názov firmy *</label>
                   <input
                     type="text"
                     name="businessName"
                     value={formData.businessName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
                     placeholder="Vaša firma s.r.o."
                   />
                 </div>
               </div>
 
+              {/* website */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm mb-2">
                   Webstránka / Sociálne siete
                 </label>
                 <input
@@ -205,28 +244,28 @@ const Contact: React.FC<ContactProps> = ({ selectedPackageKey, selectedAddOns = 
                   name="website"
                   value={formData.website}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
                   placeholder="https://vasafirma.sk"
                 />
               </div>
 
+              {/* product */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Čo predávate? *
-                </label>
+                <label className="block text-sm mb-2">Čo predávate? *</label>
                 <textarea
                   name="product"
                   value={formData.product}
                   onChange={handleChange}
                   required
                   rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
                   placeholder="Opíšte vaše produkty alebo služby..."
                 />
               </div>
 
+              {/* brand tone */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm mb-2">
                   Opíšte tón vašej značky (Voliteľné)
                 </label>
                 <textarea
@@ -234,64 +273,68 @@ const Contact: React.FC<ContactProps> = ({ selectedPackageKey, selectedAddOns = 
                   value={formData.brandTone}
                   onChange={handleChange}
                   rows={2}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
                   placeholder="Veselý, profesionálny, dôveryhodný..."
                 />
               </div>
 
+              {/* email */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  E-mailová adresa *
-                </label>
+                <label className="block text-sm mb-2">E-mailová adresa *</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+                  className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
                   placeholder="jan@vasafirma.sk"
                 />
               </div>
-              <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Telefónne číslo
-                  </label>
-                  <input
-                    type="number"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-                    placeholder="09123456789"
-                  />
-                </div>
 
+              {/* phone */}
+              <div>
+                <label className="block text-sm mb-2">Telefónne číslo</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500"
+                  placeholder="09123456789"
+                />
+              </div>
+
+              {/* submit */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-600 to-teal-600 text-white px-6 py-4 rounded-xl font-semibold text-base hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center gap-2"
                 disabled={!agreed}
+                className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-purple-600 to-teal-600 text-white rounded-xl font-semibold transform hover:scale-105 transition"
               >
                 <Send className="w-5 h-5" />
                 CHCEM BEZPLATNÝ KONCEPT A ZAČAŤ SVOJ PRÍBEH!
               </button>
-              <div className="flex items-center justify-center mt-4 mb-2">
+
+              {/* GDPR */}
+              <div className="flex items-center justify-center mt-4">
                 <input
                   id="gdpr-agree"
                   type="checkbox"
                   checked={agreed}
                   onChange={e => setAgreed(e.target.checked)}
-                  required
                   className="w-5 h-5 accent-purple-600 rounded mr-2"
                 />
-                <label htmlFor="gdpr-agree" className="text-sm text-gray-700 select-none cursor-pointer">
-                  Súhlasím s <a href="/ochrana-osobnych-udajov" target="_blank" rel="noopener noreferrer" className="underline text-purple-700 hover:text-purple-900">ochranou osobných údajov</a>
+                <label htmlFor="gdpr-agree" className="text-sm cursor-pointer">
+                  Súhlasím s{' '}
+                  <a
+                    href="/ochrana-osobnych-udajov"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline text-purple-700"
+                  >
+                    ochranou osobných údajov
+                  </a>
                 </label>
-              </div>
-              <div className="text-center mt-3">
-                <span className="inline-block bg-yellow-100 text-yellow-800 text-sm font-semibold px-4 py-2 rounded-full">
-                  Dostupných 13 z 15 miest tento mesiac
-                </span>
               </div>
             </form>
 
