@@ -108,22 +108,22 @@ const ExitIntentPopup = () => {
       {/* Pop-up Window */}
       <div className="relative z-10 w-full max-w-md mx-auto bg-white rounded-2xl shadow-2xl p-8 animate-fadeIn flex flex-col items-center">
         {/* Step 1: The Hook */}
-        {step === 1 && !submitted && (
+         {step === 1 && !submitted && (
           <>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 text-center">WAIT! Don't Leave Without Your Free Mascot Idea!</h2>
-            <p className="text-gray-700 text-base mb-8 text-center">Answer 3 simple questions and our artists will sketch a custom mascot concept for your brand, 100% free. No commitment.</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 text-center">POČKAJTE! Neodchádzajte bez svojho bezplatného návrhu maskota!</h2>
+            <p className="text-gray-700 text-base mb-8 text-center">Odpovedzte na 3 jednoduché otázky a naši umelci vám zdarma navrhnú maskota na mieru vašej značky. Žiadny záväzok.</p>
             <button
               className="w-full bg-gradient-to-r from-purple-600 to-teal-600 text-white text-lg font-semibold py-4 rounded-full shadow-lg hover:scale-105 transition-transform mb-4"
               onClick={() => setStep(2)}
             >
-              ✨ Get My Free Mascot Concept
+              ✨ Chcem bezplatný návrh maskota
             </button>
             <button
               className="block text-sm text-gray-400 hover:text-gray-600 underline mx-auto"
               onClick={closePopup}
               tabIndex={0}
             >
-              No thanks, I'm not interested.
+              Nie, nemám záujem.
             </button>
           </>
         )}

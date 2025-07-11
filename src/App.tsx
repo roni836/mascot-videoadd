@@ -56,7 +56,7 @@ function App() {
         <Route
           path="*"
           element={
-            <>
+            <div className='w-[500px] md:w-full'>
               {loading && (
                 <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-white/15 via-purple-100/15 to-teal-100/15 backdrop-blur-sm">
                   <img src="/preloader.gif" alt="Načítava sa..." className="w-28 h-28 mb-4" />
@@ -89,7 +89,7 @@ function App() {
               <FAQ />
               <Contact selectedPackageKey={selectedPackageKey} selectedAddOns={selectedAddOns} />
               <Footer />
-            </>
+            </div>
           }
         />
       </Routes>
