@@ -112,11 +112,10 @@ const Contact: React.FC<ContactProps> = ({
         <div className="max-w-4xl mx-auto p-12 bg-white rounded-3xl shadow-xl text-center">
           <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Thank You! We'll Be In Touch Soon
+            Ďakujeme! Čoskoro sa vám ozveme
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            We've received your request and will send you a custom concept idea
-            within 24 hours.
+           Dostali sme vašu žiadosť a do 24 hodín vám pošleme nápad na vlastný koncept.
           </p>
           <div className="bg-green-50 rounded-2xl p-6">
             <p className="text-green-800 font-medium">
