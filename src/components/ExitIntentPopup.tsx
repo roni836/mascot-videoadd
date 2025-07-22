@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 
 interface FormData {
   business: string;
@@ -17,21 +18,7 @@ const ExitIntentPopup: React.FC = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  // 1) Load tracking script once
-  useEffect(() => {
-    if (document.getElementById('ecmtr-script')) return;
-
-    const script = document.createElement('script');
-    script.id = 'ecmtr-script';
-    script.async = true;
-    script.src = '//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js';
-    script.onload = () => {
-      window.ecotrack('newTracker', 'cf', 'd2dpiwfhf3tz0r.cloudfront.net', { appId: 'leonlogic' });
-      window.ecotrack('setUserIdFromLocation', 'ecmid');
-      window.ecotrack('trackPageView');
-    };
-    document.body.appendChild(script);
-  }, []);
+  // ❌ removed Ecomail tracker
 
   // 2) Exit-intent listener (once per session)
   useEffect(() => {
@@ -51,30 +38,22 @@ const ExitIntentPopup: React.FC = () => {
 
   const closePopup = () => setVisible(false);
 
-  // 3) Build & post hidden form
+  // 3) Send via EmailJS (replaces Ecomail hidden form)
   const submitToEcomail = ({ business, personality, email }: FormData) => {
-    const form = document.createElement('form');
-    form.action = 'https://leonlogic.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088';
-    form.method = 'POST';
-    form.style.display = 'none';
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID!
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID!
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
 
-    const addField = (name: string, value: string) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
+    const params = {
+      name: business,
+      email,
+      businessName: business,
+      brandTone: personality,
+      newsletter: '1',
+      comingFrom: 'popup',
     };
 
-    addField('name', business);
-    addField('email', email);
-    addField('businessName', business);
-    addField('brandTone', personality);
-    addField('newsletter', '1');
-    addField('comingFrom', 'popup');
-
-    document.body.appendChild(form);
-    form.submit();
+    return emailjs.send(SERVICE_ID, TEMPLATE_ID, params, { publicKey: PUBLIC_KEY });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,10 +61,15 @@ const ExitIntentPopup: React.FC = () => {
     setFormData(fd => ({ ...fd, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    submitToEcomail(formData);
-    setSubmitted(true);
+    try {
+      await submitToEcomail(formData);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Email send failed', err);
+      alert('Failed to send. Please try again.');
+    }
   };
 
   if (!visible) return null;
