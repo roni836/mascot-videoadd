@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Send, Upload, Calendar, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { packages, addOns } from './Pricing';
 
 interface ContactProps {
   selectedPackageKey?: string;
   selectedAddOns?: string[];
 }
-
 interface FormData {
   name: string;
   businessName: string;
@@ -25,6 +25,7 @@ const Contact: React.FC<ContactProps> = ({
 }) => {
   const [agreed, setAgreed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
@@ -38,7 +39,7 @@ const Contact: React.FC<ContactProps> = ({
     addOns: selectedAddOns,
   });
 
-  // Keep props in sync if they ever change
+  // Sync props -> state
   useEffect(() => {
     setFormData(fd => ({
       ...fd,
@@ -47,23 +48,6 @@ const Contact: React.FC<ContactProps> = ({
     }));
   }, [selectedPackageKey, selectedAddOns]);
 
-  // Ecomail tracker
-  useEffect(() => {
-    if (document.getElementById('ecmtr-script')) return;
-
-    const script = document.createElement('script');
-    script.id = 'ecmtr-script';
-    script.async = true;
-    script.src = '//d70shl7vidtft.cloudfront.net/ecmtr-2.4.2.js';
-    script.onload = () => {
-      window.ecotrack('newTracker', 'cf', 'd2dpiwfhf3tz0r.cloudfront.net', {
-        appId: 'leonlogic'
-      });
-      window.ecotrack('setUserIdFromLocation', 'ecmid');
-      window.ecotrack('trackPageView');
-    };
-    document.body.appendChild(script);
-  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -82,43 +66,44 @@ const Contact: React.FC<ContactProps> = ({
     }));
   };
 
-  const submitToEcomail = (data: FormData) => {
-    const form = document.createElement('form');
-    form.action =
-      'https://leonlogic.ecomailapp.cz/public/subscribe/1/43c2cd496486bcc27217c3e790fb4088';
-    form.method = 'POST';
-    form.style.display = 'none';
-
-    const addField = (name: string, val: string) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = val;
-      form.appendChild(input);
+  const sendViaEmailJS = async (data: FormData) => {
+    // Map to your EmailJS template variable names
+    const templateParams = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      businessName: data.businessName,
+      website: data.website,
+      product: data.product,
+      brandTone: data.brandTone,
+      package: data.package,
+      addOns: data.addOns.join(', '),
+      comingFrom: 'contact-enquiry',
+      newsletter: '1'
     };
 
-    addField('name', data.name);
-    addField('email', data.email);
-    addField('phone', data.phone);
-    addField('businessName', data.businessName);
-    addField('website', data.website);
-    addField('product', data.product);
-    addField('brandTone', data.brandTone);
-    addField('newsletter', '1');
-    addField('comingFrom', 'contact-enquiry');
-    // include add-ons if you need them
-    if (data.addOns.length) {
-      addField('addOns', data.addOns.join(','));
-    }
-
-    document.body.appendChild(form);
-    form.submit();
+    return emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
+      templateParams,
+      { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY! }
+    );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    submitToEcomail(formData);
-    setIsSubmitted(true);
+    if (!agreed) return;
+
+    setIsSending(true);
+    try {
+      await sendViaEmailJS(formData);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Email send failed', err);
+      alert('Failed to send. Please try again later.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   if (isSubmitted) {
@@ -356,7 +341,7 @@ const Contact: React.FC<ContactProps> = ({
           {/* Sticky info panel */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-24 self-start bg-gradient-to-br from-purple-600 to-teal-600 p-8 lg:p-12 text-white rounded-3xl">
             <h3 className="text-2xl font-bold mb-6">Čo dostanete zadarmo?</h3>
-            
+
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
@@ -367,7 +352,7 @@ const Contact: React.FC<ContactProps> = ({
                   <p className="text-purple-100">Vytvoríme koncept maskota na základe vašej značky</p>
                 </div>
               </div>
-              
+
               <div className="flex gap-4">
                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
                   2
@@ -377,7 +362,7 @@ const Contact: React.FC<ContactProps> = ({
                   <p className="text-purple-100">15-minútový hovor na prebratie vašej vízie a požiadaviek</p>
                 </div>
               </div>
-              
+
               <div className="flex gap-4">
                 <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm font-bold">
                   3
